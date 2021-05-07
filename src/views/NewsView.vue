@@ -1,12 +1,18 @@
 <template>
   <transition name="fade">
     <div news>
-      <p v-for="item in fetchedNews" :key="item.id">
-        <a :href="item.url" target="_blank">{{ item.title }}</a>
-        <small> / {{ item.time_ago}} by
-          <router-link :to="`/user/${item.user}`">{{ item.user }}</router-link>
-        </small>
-      </p>
+      <ul class="news-list">
+        <li v-for="item in fetchedNews" :key="item.id" class="post">
+          <div class="points">{{ item.points }}</div>
+          <div>
+            <p class="new-title"><a :href="item.url">{{ item.title }}</a></p>
+            <small class="link-text">
+              by
+              <router-link :to="`/user/${item.user}`">{{ item.user }}</router-link>
+            </small>
+          </div>
+        </li>
+      </ul>
     </div>
   </transition>
 </template>
@@ -26,6 +32,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="less">
+@import "~@/less/asset";
+[news] {
+  .post { .-b(#eee);
+    .points { .wh(80,60); .lh(60); .ib; .vam; .tc; color:#42b883; }
+    .points + div { .ib; .vam; width:calc(100vw - 120px); }
+    .new-title { .m(0); }
+    .link-text { color:#828282; }
+  }
+}
 </style>

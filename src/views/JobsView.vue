@@ -2,7 +2,7 @@
   <transition name="fade">
     <div jobs>
       <div v-for="item in fetchedJobs">
-        <a :href="item.url" target="_blank">{{ item.title }}</a>
+        <a :href="item.url">{{ item.title }}</a>
         <small> / {{ item.time_ago}} / {{ item.domain }}</small>
       </div>
     </div>

@@ -18,4 +18,7 @@ export default {
 <style lang="less">
 @import "~@/less/common";
 @import "~@/less/base";
+@import "~@/less/asset";
+
+a.router-link-exact-active { text-decoration: underline; }
 </style>
