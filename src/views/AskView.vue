@@ -1,30 +1,19 @@
 <template>
-  <transition name="fade">
-    <div ask>
-      <p v-for="item in fetchedAsk">
-        <router-link :to="`/item/${item.id}`">{{ item.title }}</router-link>
-        <small> / {{ item.time_ago }} / {{ item.user }}</small>
-      </p>
-    </div>
-  </transition>
-
+  <div>
+    <list-item></list-item>
+  </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import ListItem from "@/components/ListItem";
 
 export default {
   name: "AskView",
 
-  computed: {
-    ...mapGetters(['fetchedAsk']),
-  },
-  created() {
-    this.$store.dispatch('FETCH_ASK');
-  }
+  components: { ListItem },
 }
 </script>
 
-<style>
-
+<style lang="less">
+@import "~@/less/asset";
 </style>
