@@ -2,13 +2,16 @@
   <transition name="fade">
     <div item>
       <section>
-        <div class="user-container">
-          <div><i class="fas fa-user"></i></div>
-          <div class="user-description">
-            <router-link :to="`/user/${item.user}`">{{ item.user }}</router-link>
-            <div class="time">{{ item.time_ago }}</div>
-          </div>
-        </div>
+        <user-profile :info="item"></user-profile>
+<!--        <div class="user-container">-->
+<!--          <div><i class="fas fa-user"></i></div>-->
+<!--          <div class="user-description">-->
+<!--            <router-link :to="`/user/${item.user}`">{{ item.user }}</router-link>-->
+<!--            <div class="time">{{ item.time_ago }}</div>-->
+<!--          </div>-->
+<!--        </div>-->
+      </section>
+      <section>
         <h2>{{ item.title }}</h2>
       </section>
       <section>
@@ -20,9 +23,11 @@
 </template>
 
 <script>
+import UserProfile from "@/components/UserProfile";
+
 export default {
   name: "ItemView",
-
+  components: {UserProfile},
   computed: {
     item() {
       return this.$store.state.item;

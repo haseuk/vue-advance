@@ -1,16 +1,17 @@
 <template>
   <transition name="fade">
     <div user>
-      <p>name: {{ userInfo.id }}</p>
-      <p>karma: {{ userInfo.karma }}</p>
-      <p>created: {{ userInfo.created }}</p>
+      <user-profile :info="userInfo"></user-profile>
     </div>
   </transition>
 </template>
 
 <script>
+import UserProfile from "@/components/UserProfile";
+
 export default {
   name: "UserView",
+  components: { UserProfile },
 
   computed: {
     userInfo() {

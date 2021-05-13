@@ -23,42 +23,30 @@
 export default {
   name: "ListItem",
 
-  data() {
-    return {
-      page: ''
+  created() {
+    const name = this.$route.name;
+    let actionName;
+    if (name === 'news') {
+      actionName = 'FETCH_NEWS';
+    } else if (name === 'ask') {
+      actionName = 'FETCH_ASK';
+    } else {
+      actionName = 'FETCH_JOBS';
     }
+    this.$store.dispatch(actionName);
   },
-  watch: {
-    page(v) {
-      this.actionActive(v);
-    }
-  },
-
-  // created() {
-  //   let actionName;
-  //   if (this.page === 'news') {
-  //     actionName = 'FETCH_NEWS';
-  //   } else if (this.page === 'ask') {
-  //     actionName = 'FETCH_ASK';
-  //   } else {
-  //     actionName = 'FETCH_JOBS';
-  //   }
-  //   this.$store.dispatch(actionName);
-  // },
   computed: {
-    nowPage() {
-      this.page = this.$route.name;
+    listItems() {
+      const name = this.$route.name;
+      if (name === 'news') {
+        return this.$store.state.news;
+      } else if (name === 'ask') {
+        return this.$store.state.ask;
+      } else {
+        return this.$store.state.jobs;
+      }
     }
   },
-  methods: {
-    actionActive(page) {
-      const upperCasePage = page.toUpperCase();
-      this.$store.dispatch(`FETCH_${upperCasePage}`);
-    }
-  },
-  mounted() {
-    this.nowPage();
-  }
 }
 </script>
 
