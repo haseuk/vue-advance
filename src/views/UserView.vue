@@ -1,7 +1,11 @@
 <template>
   <transition name="fade">
     <div user>
-      <user-profile :info="userInfo"></user-profile>
+      <user-profile :info="userInfo">
+        <div slot="username">{{ userInfo.id }}</div>
+        <span slot="time">{{ 'Joined ' + userInfo.created }}, </span>
+        <span slot="karma">{{ userInfo.karma }}</span>
+      </user-profile>
     </div>
   </transition>
 </template>

@@ -5,8 +5,11 @@
         <div class="user-container">
           <div><i class="fas fa-user"></i></div>
           <div class="user-description">
-            <div>{{ info.id }}</div>
-            <div class="time">{{ info.created }}</div>
+            <slot name="username"></slot>
+            <div class="time">
+              <slot name="time"></slot>
+            </div>
+            <slot name="karma"></slot>
           </div>
         </div>
       </section>
@@ -19,11 +22,6 @@ export default {
   name: "UserProfile",
   props: { info:Object }
 
-  // computed: {
-  //   userInfo() {
-  //     return this.$store.state.user;
-  //   }
-  // },
 }
 </script>
 

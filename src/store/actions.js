@@ -3,7 +3,10 @@ import {fetchAskList, fetchJobsList, fetchNewsList, fetchUserInfo, fetchCommentI
 export default {
   FETCH_NEWS(context) {
     fetchNewsList()
-      .then(response => context.commit('SET_NEWS', response.data))
+      .then(response => {
+        context.commit('SET_NEWS', response.data);
+        return response;
+      });
   },
   FETCH_ASK({commit}) {
     fetchAskList()

@@ -1,17 +1,42 @@
 <template>
-  <transition name="fade">
-    <div id="app">
-      <tool-bar></tool-bar>
+  <div id="app">
+    <tool-bar></tool-bar>
+    <transition name="fade">
       <router-view></router-view>
-    </div>
-  </transition>
+    </transition>
+    <spinner :loading="loadingStatus"></spinner>
+  </div>
 </template>
 
 <script>
 import ToolBar from "@/components/ToolBar";
+import Spinner from "@/components/Spinner";
+import bus from "@/utils/bus";
 
 export default {
-  components: { ToolBar },
+  components: { ToolBar, Spinner },
+
+  data(){
+    return {
+      loadingStatus: false,
+    }
+  },
+  methods: {
+    startSpinner() {
+      this.loadingStatus = true;
+    },
+    endSpinner() {
+      this.loadingStatus = false;
+    }
+  },
+  created() {
+    bus.$on('start:spinner', () => this.startSpinner);
+    bus.$on('end:spinner', () => this.endSpinner);
+  },
+  beforeDestroy() {
+    bus.$off('start:spinner', this.startSpinner)
+    bus.$off('end:spinner', this.endSpinner)
+  }
 }
 </script>
 
