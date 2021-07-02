@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import "~@/less/asset";
 [spinner] {
   &.lds-facebook { .ib; .abs; .wh(64,64); .lt(47%,47%);
